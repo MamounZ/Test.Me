@@ -1,0 +1,42 @@
+﻿@page
+@model Test.Me.Pages.Students.StudentsPerformanceModel
+@{
+    ViewData["Title"] = "Students Performance";
+    Layout = "_TeacherLayout";
+
+}
+
+<div class="container">
+    <h2>Students Performance for the Exam: @Model.Exam.Qname</h2>
+    @if (Model.StudentInfoList.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-dark">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var studentInfo in Model.StudentInfoList)
+            {
+                <tr>
+                    <td>@studentInfo.Sid</td>
+                    <td>@studentInfo.StudentName</td>
+                    <td>@studentInfo.Mark</td>
+                </tr>
+            }
+            </tbody>
+    
+        </table>
+    </div>
+
+
+    }
+    else
+    {
+    <p>No student performance data available.</p>
+    }
+</div>

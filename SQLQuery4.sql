@@ -1,0 +1,1 @@
+﻿ALTER TABLE Quiz ADD ExamSubmitted BIT;

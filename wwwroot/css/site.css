@@ -1,0 +1,147 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+<style >
+
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+
+body {
+    background-color: #4CCD9F;
+}
+
+.center {
+    margin: auto;
+    position: absolute;
+    width:40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.center2 {
+    background-color: #248D81;
+    position: relative;
+}
+
+.center3 {
+    width: 100%;
+    background-color: #248D81;
+    position: relative;
+}
+
+
+
+input {
+    float: right;
+}
+
+label {
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+
+h3 {
+    color: white;
+}
+
+h5 {
+    color: white;
+}
+
+.button {
+    background-color: #248D81;
+    border: none;
+    color: white;
+    padding: 20px 52px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button1 {
+    padding: 20px 82px;
+    border-radius: 0px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.button2 {
+    padding: 20px 82px;
+    background-color: #0D415E;
+    border-radius: 0px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.button3 {
+    padding: 20px 82px;
+    background-color: #0D415E;
+    border-radius: 0px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.button4 {
+    padding: 20px 82px;
+    border-radius: 0px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+</style >

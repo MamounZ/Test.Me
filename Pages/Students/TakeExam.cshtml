@@ -1,0 +1,95 @@
+﻿@page
+@model Test.Me.Pages.Students.TakeExamModel
+@{
+    ViewData["Title"] = "Take Exam";
+    Layout = "_StudentLayout";
+
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+<form method="post" asp-page-handler="SubmitExam" id="submitExamForm">
+    <input type="hidden" name="qid" value="@Model.Qid" />
+    @{int counter = 0;
+    @foreach (var question in Model.Questions)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 style="color: black">Question @(counter+1)</h5>
+            </div>
+            <div class="card-body">
+                <p>@question.Qutext</p>
+                @if (question.IsMultipleChoice)
+                {
+                    <div class="form-check">
+                                        <input type="radio" id="choice1_@question.Quid" name="ans @counter" value="@question.Firstop" class="form-check-input" />
+                        <label style="color: black" class="form-check-label" for="choice1_@question.Quid">@question.Firstop</label>
+                    </div>
+                    <div class="form-check">
+                                        <input type="radio" id="choice2_@question.Quid" name="ans @counter" value="@question.Secondop" class="form-check-input" />
+                        <label style="color: black" class="form-check-label" for="choice2_@question.Quid">@question.Secondop</label>
+                    </div>
+                    <div class="form-check">
+                                        <input type="radio" id="choice3_@question.Quid" name="ans @counter" value="@question.Thirdop" class="form-check-input" />
+                        <label style="color: black" class="form-check-label" for="choice3_@question.Quid">@question.Thirdop</label>
+                    </div>
+                    <div class="form-check">
+                                        <input type="radio" id="choice4_@question.Quid" name="ans @counter" value="@question.Fourthop" class="form-check-input" />
+                        <label style="color: black" class="form-check-label" for="choice4_@question.Quid">@question.Fourthop</label>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                                        <input style="color: black" type="text" id="answer_@question.Quid" name="ans @counter" class="form-control" />
+                    </div>
+                }
+            </div>
+            </div>
+            counter++;
+
+    }
+
+    }
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" name="submitType" value="SubmitExam">Submit Exam</button>
+    </div>
+</form>
+        </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 style="color: black"  class="card-title">Remaining Time</h5>
+                        <p class="card-text" id="remainingTimeDisplay"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    // Set the initial remaining time from the model
+    var remainingTime = @Model.RemainingTime;
+
+    function updateTimerDisplay() {
+        // Update the displayed time
+        document.getElementById('remainingTimeDisplay').innerText =remainingTime + ' minutes';
+
+        // Check if time is up
+        if (remainingTime <= 0) {
+            // Auto-submit the form when time is up
+            document.getElementById('submitExamForm').submit();
+        } else {
+            // Decrease the remaining time
+            remainingTime--;
+
+            // Call this function again after 1 minute (adjust as needed)
+            setTimeout(updateTimerDisplay, 60000);
+        }
+    }
+
+    // Call the function to start the countdown
+    updateTimerDisplay();
+</script>

@@ -1,0 +1,35 @@
+﻿@page
+@model Test.Me.Pages.Students.ExamsMarksModel
+@{
+    ViewData["Title"] = "Exams Marks";
+    Layout = "_StudentLayout";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Your Exam Marks</h2>
+
+    @if (Model.ExamsMarks.Any())
+    {
+        <table class="table table-dark table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Mark</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var examMark in Model.ExamsMarks)
+                {
+                    <tr>
+                        <td>@examMark.ExamName</td>
+                        <td>@examMark.Mark</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No exam marks available.</p>
+    }
+</div>

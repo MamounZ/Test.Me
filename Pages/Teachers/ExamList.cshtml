@@ -1,0 +1,53 @@
+﻿@page
+@model Test.Me.Pages.Teachers.ExamListModel
+@{
+    ViewData["Title"] = "Exam List";
+    Layout = "_TeacherLayout";
+}
+
+<h2>Exam List</h2>
+
+@if (Model.Exams.Any())
+{
+    <table class="table table-dark table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var exam in Model.Exams)
+            {
+                <tr>
+                    <td>@exam.Qname</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Exam Actions">
+                            <!-- Button to add questions to exam -->
+                            <form method="post" asp-page-handler="AddQuestions" asp-route-id="@exam.Qid">
+                                <button type="submit" class="btn btn-secondary">Add Questions</button>
+                            </form>
+
+
+                            <!-- Button to show student names and marks -->
+                            <form method="post" asp-page-handler="StudentsPerformance" asp-route-id="@exam.Qid">
+                                <button type="submit" class="btn btn-secondary">Students Performance</button>
+                            </form>
+
+
+                            <!-- Button to delete exam -->
+                            <form method="post" asp-page-handler="DeleteExam" asp-route-id="@exam.Qid">
+                                <button type="submit" class="btn btn-secondary">Delete Exam</button>
+                            </form>
+  
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No exams available.</p>
+}

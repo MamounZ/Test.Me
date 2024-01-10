@@ -1,0 +1,42 @@
+﻿@page
+@model Test.Me.Pages.Students.RegisterModel
+@{
+    Layout = "_EmptyLayout";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="text-center">Student Registration</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group row">
+                            <label for="Sname" class="col-sm-4 col-form-label text-black">Name:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="Sname" name="Sname" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Semail" class="col-sm-4 col-form-label text-black">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="Semail" name="Semail" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Spassword" class="col-sm-4 col-form-label text-black">Password:</label>
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="Spassword" name="Spassword" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                    <p class="mt-3 text-center">Already have an account? <a href="/Students/Login">Login here</a></p>
+                    <!-- Button to go to Teacher Registration Page -->
+                    <a href="/Teachers/Register" class="btn btn-secondary btn-block">Go to Teacher Registration</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

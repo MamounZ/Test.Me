@@ -1,0 +1,65 @@
+﻿@page
+@model Test.Me.Pages.AddQuestionModel
+@{
+    ViewData["Title"] = "Add Question";
+    Layout = "_TeacherLayout";
+
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" asp-page-handler="MultipleChoice" class="mb-5">
+                <h3 class="text-center">Multiple Choice Question</h3>
+                <div class="form-group">
+                    <label for="questionText">Question Text:</label>
+                    <input type="text" class="form-control" id="questionText" name="questionText" required>
+                </div>
+                <div class="form-group">
+                    <label for="correctAnswer">Correct Answer:</label>
+                    <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" required>
+                </div>
+                <div class="form-group">
+                    <label for="mark">Mark:</label>
+                    <input type="text" class="form-control" id="mark" name="mark" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstop">Option 1:</label>
+                    <input type="text" class="form-control" id="firstop" name="firstop" required>
+                </div>
+                <div class="form-group">
+                    <label for="secondop">Option 2:</label>
+                    <input type="text" class="form-control" id="secondop" name="secondop" required>
+                </div>
+                <div class="form-group">
+                    <label for="thirdop">Option 3:</label>
+                    <input type="text" class="form-control" id="thirdop" name="thirdop" required>
+                </div>
+                <div class="form-group">
+                    <label for="fourthop">Option 4:</label>
+                    <input type="text" class="form-control" id="fourthop" name="fourthop" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Question</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <form method="post" asp-page-handler="SimpleAnswer">
+                <h3 class="text-center">Simple Answer Question</h3>
+                <div class="form-group">
+                    <label for="questionText">Question Text:</label>
+                    <input type="text" class="form-control" id="questionText" name="questionText" required>
+                </div>
+                <div class="form-group">
+                    <label for="correctAnswer">Correct Answer:</label>
+                    <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" required>
+                </div>
+                <div class="form-group">
+                    <label for="mark">Mark:</label>
+                    <input type="text" class="form-control" id="mark" name="mark" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Question</button>
+            </form>
+        </div>
+    </div>
+</div>

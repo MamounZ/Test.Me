@@ -1,0 +1,31 @@
+﻿@page
+@model Test.Me.Pages.Students.ExamListModel
+@{
+    ViewData["Title"] = "Exam List";
+    Layout = "_StudentLayout";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Available Exams</h2>
+
+    @foreach (var (exam, hasTaken) in Model.ExamsWithTakenStatus)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 style="color: black" class="card-title">@exam.Qname</h5>
+                <p class="card-text">Teacher: @exam.Teacher.Tname</p>
+                <p class="card-text">Date: @exam.Qdate.ToShortDateString()</p>
+                <p class="card-text">Duration: @exam.Qtime</p>
+
+                @if (hasTaken)
+                {
+                    <button class="btn btn-secondary" disabled>Already Taken</button>
+                }
+                else
+                {
+                    <a asp-page="/Students/TakeExam" asp-route-Qid="@exam.Qid" asp-route-questionIndex="0" >Take Exam</a>
+                }
+            </div>
+        </div>
+    }
+</div>

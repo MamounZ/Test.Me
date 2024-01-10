@@ -1,0 +1,35 @@
+﻿@page
+@model Test.Me.Pages.NewExamModel
+@{
+    ViewData["Title"] = "New Exam";
+    Layout = "_TeacherLayout";
+
+}
+
+<h3 class="text-center">New Exam</h3>
+<form method="post" class="container mt-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Exam Name :</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="date" class="form-label">Exam Date (YYYY-MM-DD) :</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="time" class="form-label">Exam Time (minutes) :</label>
+                <input type="int" class="form-control" id="time" name="time" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Exam</button>
+
+        </div>
+
+    </div>
+</form>
