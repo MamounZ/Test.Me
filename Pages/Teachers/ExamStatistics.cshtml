@@ -1,0 +1,147 @@
+﻿@page "{examId:int}"
+@model ExamStatisticsModel
+
+@{
+    ViewData["Title"] = "Exam Statistics";
+    Layout = "_TeacherLayout";
+}
+
+<h2>Exam Statistics</h2>
+@{
+    var Counter = 1;
+    var Quistionswithwronganswers = new List<string>();
+    var numberQuistionswithwronganswers = new List<int>();
+}
+
+<div>
+    <h4>Question-wise Correct Answers:</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question Number</th>
+                <th>Correct Answers</th>
+                <th>Wrong Answers</th>
+                <th>Total Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var question in Model.QuestionStatistics)
+            {
+                <tr>
+                    <td>@Counter</td>
+                    <td>@question.CorrectAnswersCount</td>
+                    <td>@question.WrongAnswersCount</td>
+                    <td>@question.TotalStudentsCount</td>
+                </tr>
+                if (question.WrongAnswersCount != 0)
+                {
+                    Quistionswithwronganswers.Add("Question " + Counter);
+                    numberQuistionswithwronganswers.Add(question.WrongAnswersCount);
+                }
+                Counter++;
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h4>Pie Chart: Incorrect Answers Distribution</h4>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5" style="background-color: #4CCD9F">
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mt-5" style="background-color: #4CCD9F">
+                <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+    // Convert C# List to JavaScript array
+    var QuistionswithwronganswersArray = @Html.Raw(Json.Serialize(Quistionswithwronganswers));
+    var numberQuistionswithwronganswersArray = @Html.Raw(Json.Serialize(numberQuistionswithwronganswers));
+
+    var barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: QuistionswithwronganswersArray,
+            datasets: [{
+                backgroundColor: barColors,
+                data: numberQuistionswithwronganswersArray
+            }]
+        },
+    });
+
+    new Chart("myChart2", {
+        type: "bar",
+        data: {
+            labels: QuistionswithwronganswersArray,
+            datasets: [{
+                backgroundColor: barColors,
+                data: numberQuistionswithwronganswersArray
+            }]
+        },
+        options: {
+            legend: { display: false },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    },
+                        scaleLabel: {
+                        display: true,
+                        labelString: 'Number of incorrect answers'
+                    }
+                }],
+                    xAxes: [{
+                    
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Questions that were answered incorrectly'
+                    }
+                }]
+            }
+        }
+    });
+</script>
